@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 
-
 class Category(models.Model):
 
     name = models.CharField(
@@ -21,3 +20,10 @@ class Category(models.Model):
         verbose_name = "Description",
         help_text = "Description's name"
     )
+    
+    def __str__(self) -> str:
+        return self.name
+
+    class Meta(object):
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'

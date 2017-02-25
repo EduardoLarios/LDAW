@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+from cities_light.models import City
+from django.db.models import *
 from django.db import models
-from cities_light.models import Region, City
+
 
 class Address(models.Model):
 	street = models.CharField(
@@ -35,12 +37,16 @@ class Address(models.Model):
 		max_length = 512,
 		null = False,
 		blank = False,
-		verbose_name = _('formatting string')
+		verbose_name = 'formatting string'
 	)
 	
-	city = models.OneToOneField(City)
-	
-	region = models.OneToOneField(Region)
+	city = models.OneToOneField(City,
+		related_name = 'addresses',
+	    related_query_name = 'address',
+	    on_delete = PROTECT,
+	    null = False,
+	    verbose_name = 'city'
+	)
 	
 	def __str__(self) -> str:
 		data = {
