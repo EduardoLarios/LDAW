@@ -10,14 +10,17 @@
     <meta name="author" content="">
 
     <title>VIFAC - Usuarios</title>
+	<link rel="stylesheet" href="{% static "css/reset.css" %}"> <!-- CSS reset -->
+	<link rel="stylesheet" href="{% static "css/style.css" %}"> <!-- Resource style -->
+	<script src="{% static "js/modernizr.js" %}"></script>
 
-    <!-- Bootstrap Core CSS -->
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
     <!-- Theme CSS -->
     <link href="{% static "css/freelancer.css" %}" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
+
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
@@ -53,49 +56,15 @@
 
 
     <!-- Contact Section -->
-    <section id="donaciones">
-        <div class="container">
+    <section id="login">
+         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Modificar usuario</h2><br>
+                    <h2>Iniciar sesión</h2>
+                    <hr class="star-primary">
                 </div>
             </div>
-            <div class="row addmargin">
-
-                <div class="container">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>Cambiar</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>John</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
-                        <td>Boton</td>
-                      </tr>
-                      <tr>
-                        <td>Mary</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
-                        <td>Boton</td>
-                      </tr>
-                      <tr>
-                        <td>July</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
-                        <td>Boton</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-            </div>
-        </div>
+         </div>
     </section>
 
     <!-- Footer -->

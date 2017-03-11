@@ -25,8 +25,9 @@ class Contact(models.Model):
         default=''
     )
     aniversary = models.DateField(
-        null=True,
+        null=False,
         default=date.today()
-        
+
     )
     birthdate = models.DateTimeField(blank=True, null=True)
+
