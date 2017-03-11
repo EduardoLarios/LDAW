@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'vifacdb',
-        'USER': 'esteban',
-        'PASSWORD': 'gordolobo1',
+        'USER': 'alam',
+        'PASSWORD': 'alam',
         'HOST': 'localhost',
         'PORT': '',
     }
