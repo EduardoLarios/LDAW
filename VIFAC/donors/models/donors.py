@@ -1,141 +1,127 @@
-from donors.models import Category, Address, Donation, Contact
+# -*- coding: utf-8 -*-
+from VIFAC.donors.models import Donation
 from django.db import models
 from datetime import *
 from phonenumber_field.modelfields import PhoneNumberField
 
 __all__ = [ 'Donors' ]
 
+State = (
+    (0, 'Ninguno'),
+    (1, 'Aguascalientes'),
+    (2, 'Baja California'),
+    (3, 'Baja California Sur'),
+    (4, 'Campeche'),
+    (5, 'Chiapas'),
+    (6, 'Chihuahua'),
+    (7, 'Ciudad de México'),
+    (8, 'Coahuila de Zaragoza'),
+    (9, 'Colima'),
+    (10, 'Durango'),
+    (11, 'Guanajuato'),
+    (12, 'Guerrero'),
+    (13, 'Hidalgo'),
+    (14, 'Jalisco'),
+    (15, 'Estado de México'),
+    (16, 'Michoacán de Ocampo'),
+    (17, 'Morelos'),
+    (18, 'Nayarit'),
+    (19, 'Nuevo León'),
+    (20, 'Oaxaca'),
+    (21, 'Puebla'),
+    (22, 'Querétaro de Arteaga'),
+    (23, 'Quintana Roo'),
+    (24, 'San Luis Potosí'),
+    (25, 'Sinaloa'),
+    (26, 'Sonora'),
+    (27, 'Tabasco'),
+    (28, 'Tamaulipas'),
+    (29, 'Tlaxcala'),
+    (30, 'Veracruz'),
+    (31, 'Yucatán'),
+    (32, 'Zacatecas')
+)
+
 
 class Donor(models.Model):
 
     full_name = models.CharField(
-        max_length = 256,
-        null = False,
-        blank = False,
-        default = '',
+        max_length = 512,
         db_index = True,
         verbose_name = 'Donor Name',
         help_text = "Donor's name"
     )
-
-    category = models.OneToOneField(Category,
-        null = False,
-        blank = False,
-        verbose_name = 'Category'
-    )
     
     donation = models.ForeignKey(Donation,
-        null=False,
-        blank=True,
-        verbose_name=('Donation'),
-        help_text="Whatever the donation may be"
+        blank = True,
+        verbose_name = 'Donation',
+        help_text = "Whatever the donation may be"
     )
     
     integration_date = models.DateField(
-        null = False,
-        blank = False,
         default = date.today(),
         verbose_name = 'Integration Date',
         help_text = "Date when the donor is integrated into Vifac"
     )
 
-    country = models.CharField(
-        max_length = 256,
-        null = False,
-        blank = False,
-        default = 'México',
-        verbose_name= "Country"
-    )
-    
-    estate = models.CharField(
-        max_length = 256,
-        null = False,
-        blank = False,
-        default = '',
-        verbose_name= "Estate"
+    state = models.PositiveIntegerField(
+        choices = State,
+        default = 0,
+        verbose_name = "State"
     )
 
     city = models.CharField(
         max_length = 256,
-        null = False,
-        blank = False,
         default = '',
-        verbose_name= "City"
+        verbose_name = "City"
     )
     
     street = models.CharField(
         max_length = 256,
-        null = False,
-        blank=False,
-        default='',
-        verbose_name="Street"
+        default = '',
+        verbose_name = "Street"
     )
     
     number = models.CharField(
-        max_length = 12,
-        null = False,
-        blank = False,
+        max_length = 8,
         default = '',
         verbose_name= "Number"
     )
     
     reference =  models.CharField(
         max_length = 256,
-        null = False,
-        blank = True,
         default = '',
         verbose_name = "Reference",
         help_text = "Whoever introduced the donor to Vifac"
     )
 
     contact_name = models.CharField(
-        max_length=256,
-        null=False,
-        blank=False,
-        default='',
-        verbose_name='Contact Name',
-        help_text="Contact's name"
-    )
-
-    contact_first_lastname = models.CharField(
-        max_length=256,
-        null=False,
-        blank=True,
-        default='',
-        verbose_name="Contact First Last Name",
-        help_text="Contact's First Last Name"
-    )
-
-    contact_second_lastname = models.CharField(
-        max_length=256,
-        null=False,
-        blank=False,
-        default='',
-        verbose_name="Contact First Last Name",
-        help_text="Contact's First Last Name"
+        max_length = 512,
+        null = False,
+        blank = False,
+        default = '',
+        verbose_name = 'Contact Name',
+        help_text = "Contact's name"
     )
 
     contact_email = models.EmailField(
-        max_length=256,
-        null=False,
-        blank=True,
-        help_text="Contact's Email"
+        max_length = 256,
+        blank = True,
+        help_text = "Contact's Email"
     )
 
-    contact_birthdate = models.DateField(
-        null=False,
-        blank=True
+    contact_birthday = models.DateField(
+        blank = True
     )
     
     contact_anniversary = models.DateField(
-        null=False,
-        blank=True
+        blank = True
     )
 
     contact_phone_number = PhoneNumberField()
 
     def __str__(self) -> str:
-	    return self.full_name
+        return self.full_name + ' - ' + self.state + ',' + self.city
 
     class Meta(object):
         verbose_name = 'donor'

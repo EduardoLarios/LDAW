@@ -10,7 +10,7 @@ class Category(models.Model):
         blank = False,
         default = '',
         verbose_name = "Category name",
-        help_text = "Category's name"
+        help_text = "How one would call this donation category"
     )
 
     description = models.CharField(
@@ -19,5 +19,5 @@ class Category(models.Model):
         blank = False,
         default = '',
         verbose_name = "Description",
-        help_text = "Description's name"
+        help_text = "A small description of the category and its contents"
 )
