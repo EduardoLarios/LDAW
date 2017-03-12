@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+from phonenumber_field.modelfields import PhoneNumberField
 from VIFAC.donors.models import Donation
 from django.db import models
 from datetime import *
-from phonenumber_field.modelfields import PhoneNumberField
 
 __all__ = [ 'Donors' ]
 
@@ -97,8 +97,6 @@ class Donor(models.Model):
 
     contact_name = models.CharField(
         max_length = 512,
-        null = False,
-        blank = False,
         default = '',
         verbose_name = 'Contact Name',
         help_text = "Contact's name"
