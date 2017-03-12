@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from VIFAC.donors.models import Category
+from VIFAC.donors.models import Donor
 from django.db import models
 
 
 class Donation(models.Model):
-    code = models.CharField(
-        max_length = 8,
-        verbose_name ='code reference'
+    donor = models.ForeignKey(
+        Donor,
     )
     
     description = models.CharField(

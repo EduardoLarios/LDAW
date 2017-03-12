@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from phonenumber_field.modelfields import PhoneNumberField
-from VIFAC.donors.models import Donation
 from django.db import models
 from datetime import *
 
@@ -50,12 +49,6 @@ class Donor(models.Model):
         db_index = True,
         verbose_name = 'Donor Name',
         help_text = "Donor's name"
-    )
-    
-    donation = models.ForeignKey(Donation,
-        blank = True,
-        verbose_name = 'Donation',
-        help_text = "Whatever the donation may be"
     )
     
     integration_date = models.DateField(
