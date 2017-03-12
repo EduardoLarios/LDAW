@@ -17,32 +17,32 @@ class Donor(models.Model):
         help_text=("Donor's name")
     )
     category = models.OneToOneField(Category,
-                                    null=False,
-                                    blank=False,
-                                    verbose_name=('Category')
-                                    )
-
+        null=False,
+        blank=False,
+        verbose_name=('Category')
+    )
+    
     donation = models.ForeignKey(Donation,
-                                 null=False,
-                                 blank=True,
-                                 verbose_name=('Donation'),
-                                 help_text="Whatever the donation may be"
-                                 )
-
+        null=False,
+        blank=True,
+        verbose_name=('Donation'),
+        help_text="Whatever the donation may be"
+    )
+    
     integration_date = models.DateField(
         null=False,
         default=date.today(),
         verbose_name=('Integration Date'),
         help_text=("Date when the donor is integrated into Vifac")
     )
-
+    
     address = models.OneToOneField(Address,
-                                   null=False,
-                                   blank=False,
-                                   verbose_name=('Address'),
-                                   help_text=("Donor's address")
-                                   )
-
+        null=False,
+        blank=False,
+        verbose_name=('Address'),
+        help_text=("Donor's address")
+    )
+    
     reference = models.CharField(
         max_length=256,
         null=False,
@@ -51,10 +51,10 @@ class Donor(models.Model):
         verbose_name=("Reference"),
         help_text=("Whoever introduced the donor to Vifac")
     )
-
+    
     contacts = models.ForeignKey(Contact,
-                                 null=False,
-                                 blank=False,
-                                 verbose_name=('Contact Information'),
-                                 help_text=('Contact information for the donor')
-                                 )
+        null=False,
+        blank=False,
+        verbose_name=('Contact Information'),
+        help_text=('Contact information for the donor')
+    )
