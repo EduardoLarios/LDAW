@@ -23,14 +23,14 @@ class Donor(models.Model):
         blank = False,
         verbose_name = 'Category'
     )
-
+    
     donation = models.ForeignKey(Donation,
-        null = False,
-        blank = True,
-        verbose_name = 'Donation',
-        help_text = "Whatever the donation may be"
+        null=False,
+        blank=True,
+        verbose_name=('Donation'),
+        help_text="Whatever the donation may be"
     )
-
+    
     integration_date = models.DateField(
         null = False,
         blank = False,
@@ -66,9 +66,9 @@ class Donor(models.Model):
     street = models.CharField(
         max_length = 256,
         null = False,
-        blank = False,
-        default = '',
-        verbose_name= "Street"
+        blank=False,
+        default='',
+        verbose_name="Street"
     )
     
     number = models.CharField(
@@ -126,7 +126,7 @@ class Donor(models.Model):
         null=False,
         blank=True
     )
-
+    
     contact_anniversary = models.DateField(
         null=False,
         blank=True
@@ -135,8 +135,9 @@ class Donor(models.Model):
     contact_phone_number = PhoneNumberField()
 
     def __str__(self) -> str:
-        return self.full_name
+	    return self.full_name
 
     class Meta(object):
         verbose_name = 'donor'
         verbose_name_plural = 'donors'
+
