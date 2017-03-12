@@ -36,7 +36,7 @@ class Address(models.Model):
 		max_length=512,
 		null=False,
 		blank=False,
-		verbose_name=_('formatting string')
+		verbose_name='formatting string'
 	)
 	
 	city = models.OneToOneField(City)

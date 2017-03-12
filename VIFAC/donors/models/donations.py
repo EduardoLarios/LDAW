@@ -19,7 +19,7 @@ class Donation(models.Model):
 		null=False,
 		blank=False,
 		max_length=8,
-		verbose_name=_('code reference')
+		verbose_name ='code reference'
 	)
 	
 	def __str__(self) -> str:
