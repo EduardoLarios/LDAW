@@ -5,6 +5,8 @@ from django import forms
 
 
 class DonorForm(forms.Form):
+
+    #TODO Fix this shit
     
     full_name = forms.CharField(
         max_length = 512,

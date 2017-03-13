@@ -7,8 +7,11 @@ from VIFAC.donors.models import Donor
 
 '''def index(request):
     context = {}
-    return render(request, 'donors/new_donor.html', context)
+    return render(request, 'donor`s/new_donor.html', context)
 '''
+
+def placeholder(request):
+    return None
 
 def new_donor(request):
     today = datetime.datetime.now()

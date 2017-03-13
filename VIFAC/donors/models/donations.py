@@ -3,7 +3,7 @@ from VIFAC.donors.models import Category
 from VIFAC.donors.models import Donor
 from django.db import models
 
-
+#TODO Check model here
 class Donation(models.Model):
     donor = models.ForeignKey(
         Donor,
