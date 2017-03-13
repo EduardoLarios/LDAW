@@ -12,7 +12,7 @@ class Donation(models.Model):
     description = models.CharField(
         max_length = 1024,
         default = '',
-	    help_text = 'a small description of the donation'
+        help_text = 'a small description of the donation'
     )
     
     category = models.OneToOneField(Category,
