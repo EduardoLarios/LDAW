@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from VIFAC.donors.models import Donation
+from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
 from datetime import *
-from phonenumber_field.modelfields import PhoneNumberField
 
 __all__ = [ 'Donors' ]
 
@@ -52,12 +51,6 @@ class Donor(models.Model):
         help_text = "Donor's name"
     )
     
-    donation = models.ForeignKey(Donation,
-        blank = True,
-        verbose_name = 'Donation',
-        help_text = "Whatever the donation may be"
-    )
-    
     integration_date = models.DateField(
         default = date.today(),
         verbose_name = 'Integration Date',
@@ -97,8 +90,6 @@ class Donor(models.Model):
 
     contact_name = models.CharField(
         max_length = 512,
-        null = False,
-        blank = False,
         default = '',
         verbose_name = 'Contact Name',
         help_text = "Contact's name"
