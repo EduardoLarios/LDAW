@@ -55,7 +55,17 @@ class DonorForm(forms.Form):
         help_text = "Introduzca un correo electrónico válido"
     )
     
-    contact_phone_umber = PhoneNumberField()
+    contact_phone_number = PhoneNumberField()
+    
+    contact_birthday = forms.DateField(
+        widget = forms.SelectDateWidget()
+    )
+    
+    contact_anniversary= forms.DateField(
+        widget = forms.SelectDateWidget()
+    )
+    
+    
     
     
     

@@ -10,20 +10,20 @@
     <meta name="author" content="">
 
     <title>VIFAC - Donaciones</title>
-	<link rel="stylesheet" href="{% static "css/reset.css" %}"> <!-- CSS reset -->
-	<link rel="stylesheet" href="{% static "css/style.css" %}"> <!-- Resource style -->
-	<script src="{% static "js/modernizr.js" %}"></script>
+	<link rel="stylesheet" href="{% url static "css/reset.css" %}"> <!-- CSS reset -->
+	<link rel="stylesheet" href="{% url static "css/style.css" %}"> <!-- Resource style -->
+	<script src="{% url static "js/modernizr.js" %}"></script>
 
-    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
-    <link href="{% static "css/freelancer.css" %}" rel="stylesheet">
+    <link href="{% url static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% url static "css/freelancer.css" %}" rel="stylesheet">
 
-    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% url static "css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+    <!--[if lt IE 9] -->
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -67,7 +67,9 @@
             <div class="row">
 
                 <div class="container">
-                  <form>
+                  <form action="{% url "donors.views.new_donor" %}" method="post">
+                  {% csrf_token %}
+
                     <div class="row">
                         <div class="col-md-12">
                             <h3>Introduce información del donador</h3>
@@ -75,22 +77,13 @@
                     </div>  
                     <div class="row">
                         <div class="col-md-4">
-                              <label for="name">Nombre:</label>
-                              <input type="name" class="form-control" id="name" placeholder="Nombre">
-                        </div>    
-                        <div class="col-md-4">
-                              <label for="category">Categoría</label>
-                                <select class="form-control" id="category">
-                                <option>Económica</option>
-                                <option>Alimentos</option>
-                                <option>Medicinas</option>
-                                <option>Otros</option>
-                                 </select>
+                              <label for="full_name">Nombre:</label>
+                              <input type="text" class="form-control" name="full_name" placeholder="Nombre">
                         </div>
 
                         <div class="col-md-4">
-                            <label for="integrationdate">Fecha de integración:</label>
-                            <input type="date" class="form-control" id="integrationdate" placeholder="Fecha">
+                            <label for="integration_date">Fecha de integración:</label>
+                            <input type="date" class="form-control" name="integration_date" placeholder="Fecha">
                         </div>    
                     </div>
                     
@@ -98,46 +91,32 @@
                       
                     <div class="row addmargin">
                     <div class="col-md-2">
-                        <label for="pais">País:</label>
-                        <select class="form-control" id="pais">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        </select>                            
-                    </div>
-                    <div class="col-md-2">
-                        <label for="estado">Estado:</label>
-                        <select class="form-control" id="estado">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
+                        <label for="state">Estado:</label>
+                        <select class="form-control" name="state">
+                            {% for state in states %}
+	                        <option>{{ state }}</option>
+	                        {% endfor %}
                         </select>   
                         
                     </div>    
-                      <div class="col-md-3">
-                          <label for="city">Ciudad:</label>
-                            <select class="form-control" id="city">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                             </select>               
-                    </div>
                       <div class="col-md-4 ">
-                              <label for="address">Calle:</label>
-                              <input type="text" class="form-control" id="address" placeholder="Calle">                          
+                              <label for="city">Calle:</label>
+                              <input type="text" class="form-control" name="city" placeholder="Ciudad">
+                      </div>
+
+                      <div class="col-md-4 ">
+                              <label for="street">Calle:</label>
+                              <input type="text" class="form-control" name="street" placeholder="Calle">
                       </div>
                       <div class="col-md-1">
-                              <label for="addressno">Número:</label>
-                              <input type="text" class="form-control" id="addressno" placeholder="#">                       
+                              <label for="number">Número:</label>
+                              <input type="text" class="form-control" name="number" placeholder="Número Exterior">
                       </div>
                     </div>
                       <div class="row addmargin">
                             <div class="col-md-4">
-                              <label for="vifacreference">Referencia:</label>
-                              <input type="text" class="form-control" id="vifacreference" placeholder="Persona de VIFAC">
+                              <label for="reference">Referencia:</label>
+                              <input type="text" class="form-control" name="reference" placeholder="Referencia a VIFAC">
                             </div>
                       </div>
                     <div class="row">
@@ -147,26 +126,26 @@
                     </div>
                     <div class="row">city
                         <div class="col-md-4">
-                              <label for="contactname">Nombre Contacto:</label>
-                              <input type="name" class="form-control" id="contactname" placeholder="Nombre Contacto">                        
+                              <label for="contact_name">Nombre Contacto:</label>
+                              <input type="text" class="form-control" name="contact_name" placeholder="Nombre Contacto">
                         </div>
                         <div class="col-md-4">
-                              <label for="contactphone">Teléfono Contacto:</label>
-                              <input type="phone" class="form-control" id="contactphone" placeholder="XXX-XXXXXXX">                        
+                              <label for="contact_phone_number">Teléfono Contacto:</label>
+                              <input type="tel" class="form-control" name="contact_phone_number" placeholder="XXX-XXXXXXX">
                         </div>
                         <div class="col-md-4">
-                               <label for="email">Email Contacto:</label>
-                              <input type="email" class="form-control" id="email" placeholder="ejemplo@ejemplo.com">                              
+                               <label for="contact_email">Email Contacto:</label>
+                              <input type="email" class="form-control" name="contact_email" placeholder="ejemplo@dominio.com">
                         </div>
                     </div>
                     <div class="row addmargin">
                         <div class="col-md-4">
-                            <label for="birthday">Fecha de nacimiento:</label>
-                            <input type="date" class="form-control" id="birthday" placeholder="Cumpleaños">                        
+                            <label for="contact_birthday">Fecha de nacimiento:</label>
+                            <input type="date" class="form-control" name="contact_birthday" placeholder="Fecha de Nacimiento">
                         </div>
                         <div class="col-md-4">
-                            <label for="aniversary">Fecha de aniversario:</label>
-                            <input type="date" class="form-control" id="aniversary" placeholder="Aniversario">                        
+                            <label for="contact_anniversary">Fecha de aniversario:</label>
+                            <input type="date" class="form-control" name="contact_anniversary" placeholder="Fecha de Aniversario">
                         </div>
                     </div>
                     </div>
@@ -199,7 +178,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Your Website 2016
+                        Copyright &copy; VIFAC 2017
                     </div>
                 </div>
             </div>
@@ -216,20 +195,20 @@
     <!-- Portfolio Modals -->
 
     <!-- jQuery -->
-    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% url static "js/jquery.min.js" %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{% static "js/bootstrap.min.js" %}" ></script>
+    <script src="{% url static "js/bootstrap.min.js" %}" ></script>
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="{% static "js/jqBootstrapValidation.js" %}"></script>
-    <script src="{% static "js/contact_me.js" %}"></script>
+    <script src="{% url static "js/jqBootstrapValidation.js" %}"></script>
+    <script src="{% url static "js/contact_me.js" %}"></script>
 
     <!-- Theme JavaScript -->
-    <script src="{% static "js/freelancer.min.js" %}"></script>
+    <script src="{% url static "js/freelancer.min.js" %}"></script>
 
 </body>
 

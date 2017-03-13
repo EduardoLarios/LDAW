@@ -100,6 +100,8 @@ class Donor(models.Model):
         blank = True,
         help_text = "Contact's Email"
     )
+    
+    contact_phone_number = PhoneNumberField()
 
     contact_birthday = models.DateField(
         blank = True
@@ -109,7 +111,6 @@ class Donor(models.Model):
         blank = True
     )
 
-    contact_phone_number = PhoneNumberField()
 
     def __str__(self) -> str:
         return self.full_name + ' - ' + self.state + ',' + self.city
