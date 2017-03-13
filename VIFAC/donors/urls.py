@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.new_donor, name='new_donor'),
-    url(r'^placeholder$')
+    url(r'^registrar/$', views.index, name='index')
 ]

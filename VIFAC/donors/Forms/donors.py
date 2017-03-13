@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from phonenumber_field.formfields import PhoneNumberField
-from VIFAC.donors.models.donors import State
+from ..models.donors import State
 from django import forms
 
 

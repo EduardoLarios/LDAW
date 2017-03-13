@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from VIFAC.donors.models import Category
-from VIFAC.donors.models import Donor
+from .categories import Category
+from .donors import Donor
 from django.db import models
 
 #TODO Check model here

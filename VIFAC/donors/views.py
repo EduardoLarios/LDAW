@@ -1,14 +1,14 @@
-from VIFAC.donors.Forms.donors import DonorForm
+from .Forms.donors import DonorForm
 from django.shortcuts import render
 from django.template import loader
 import datetime
-from VIFAC.donors.models import Donor
+from .models.donors import Donor
 
 
-'''def index(request):
+def index(request):
     context = {}
-    return render(request, 'donor`s/new_donor.html', context)
-'''
+    return render(request, 'donors/new_donor.html', context)
+
 
 def placeholder(request):
     return None

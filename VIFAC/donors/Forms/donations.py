@@ -21,5 +21,3 @@ class DonationForm(forms.Form):
 		choices=Donor,
 		label = 'Donador'
 	)
-	
-	
