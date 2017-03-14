@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Donor Created</title>
-</head>
-<body>
+{% extends 'base/layout.html' %}
+
+{% block content %}
 	<h1>Donor created succesfully!</h1>
 	<p>
-		Data: {{ full_name }} - {{ city }}
+		Data: {{ state }}
 		Date: {{ today }}
 		Thanks!
 	</p>
-
-</body>
-</html>
+{% endblock content %}

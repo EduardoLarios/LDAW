@@ -5,8 +5,6 @@ from django import forms
 
 
 class DonorForm(forms.Form):
-
-    #TODO Fix this shit
     
     full_name = forms.CharField(
         max_length = 512,
@@ -15,7 +13,7 @@ class DonorForm(forms.Form):
     )
     
     integration_date = forms.DateField(
-        widget = forms.SelectDateWidget,
+        widget = forms.DateInput(attrs = { 'type': 'date' }),
         help_text = 'Fecha en que se integró a la organización, por default hoy '
     )
     
@@ -60,11 +58,11 @@ class DonorForm(forms.Form):
     contact_phone_number = PhoneNumberField()
     
     contact_birthday = forms.DateField(
-        widget = forms.SelectDateWidget()
+        widget = forms.DateInput(attrs = { 'type': 'date' })
     )
     
     contact_anniversary= forms.DateField(
-        widget = forms.SelectDateWidget()
+        widget = forms.DateInput(attrs = { 'type': 'date' })
     )
     
     

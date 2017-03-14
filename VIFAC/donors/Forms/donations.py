@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from VIFAC.donors.models.donors import Donor
-from VIFAC.donors.models.categories import Category
+from ..models.donors import Donor
+from ..models.categories import Category
 
 
 class DonationForm(forms.Form):

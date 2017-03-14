@@ -3,7 +3,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 from django.db import models
 from datetime import *
 
-__all__ = [ 'Donors' ]
+__all__ = [ 'Donors', 'State' ]
 
 State = (
     (0, 'Ninguno'),
@@ -52,7 +52,7 @@ class Donor(models.Model):
     )
     
     integration_date = models.DateField(
-        default = date.today(),
+        default = date.today,
         verbose_name = 'Integration Date',
         help_text = "Date when the donor is integrated into Vifac"
     )
@@ -113,7 +113,7 @@ class Donor(models.Model):
 
 
     def __str__(self) -> str:
-        return self.full_name + ' - ' + self.state + ',' + self.city
+        return '%s-%s,%s' % (self.full_name, self.state, self.city)
 
     class Meta(object):
         verbose_name = 'donor'
