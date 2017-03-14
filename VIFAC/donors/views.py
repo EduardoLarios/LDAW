@@ -16,34 +16,62 @@ def index(request):
     context = {}
     return render(request, 'donors/new_donor.html', context)
 
-
-def placeholder(request):
-    return None
-
-def new_donor(request):
+def creation_view(model, form_cls):
     
-    context = { 'today': datetime.datetime.now() }
+    name = model._meta.model_name
     
-    if request.method == "POST":
+    def view(request):
+    
+        context = { 'today': datetime.datetime.now() }
+    
+        if request.method == "POST":
         
-        # Get the form through POST
-        new_donor_form = DonorForm(request.POST)
+            # Get the form through POST
+            form = form_cls(request.POST)
         
-        # Validate form data
-        if new_donor_form.is_valid():
-            
-            # Get form variables
-            # Create donor object
-            context['donor'] = Donor.objects.create(**new_donor_form.cleaned_data)
-            return render(request, 'donors/donor_created.html', context, status = 201)
+            # Validate form data
+            if form.is_valid():
+                # Get form variables
+                # Create donor object
+                context['donor'] = model.objects.create(**form.cleaned_data)
+                return render(request, 'donors/%s_created.html' % name, context, status = 201)
+        
+            context['form'] = form
+            return render(request, 'donors/new_%s.html' % name, context)
+    
+        else: form = DonorForm()
+    
+        context['form'] = form
+        return render(request, 'donors/new_%s.html' % name, context)
 
-        context['form'] = new_donor_form
-        return render(request, 'donors/new_donor.html', context)
-        
-    else: new_donor_form = DonorForm()
+    return view
 
-    context['form'] = new_donor_form
-    return render(request, 'donors/new_donor.html', context)
+new_donor = creation_view(Donor, DonorForm)
+
+# def new_donor(request):
+#
+#     context = { 'today': datetime.datetime.now() }
+#
+#     if request.method == "POST":
+#
+#         # Get the form through POST
+#         new_donor_form = DonorForm(request.POST)
+#
+#         # Validate form data
+#         if new_donor_form.is_valid():
+#
+#             # Get form variables
+#             # Create donor object
+#             context['donor'] = Donor.objects.create(**new_donor_form.cleaned_data)
+#             return render(request, 'donors/donor_created.html', context, status = 201)
+#
+#         context['form'] = new_donor_form
+#         return render(request, 'donors/new_donor.html', context)
+#
+#     else: new_donor_form = DonorForm()
+#
+#     context['form'] = new_donor_form
+#     return render(request, 'donors/new_donor.html', context)
 
 def new_donation(request):
     if request.method == "POST":
