@@ -80,14 +80,14 @@ header img {
   display: block;
   margin: 0 auto 20px;
 }
-header .intro-text .name {
+section .intro-text .name {
   display: block;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 2em;
 }
-header .intro-text .skills {
+section .intro-text .skills {
   font-size: 1.25em;
   font-weight: 300;
 }
@@ -96,10 +96,10 @@ header .intro-text .skills {
     padding-top: 200px;
     padding-bottom: 100px;
   }
-  header .intro-text .name {
+  section .intro-text .name {
     font-size: 4.75em;
   }
-  header .intro-text .skills {
+  section .intro-text .skills {
     font-size: 1.75em;
   }
 }
