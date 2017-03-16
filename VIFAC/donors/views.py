@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 def index(request):
     context = {}
-    return render(request, 'donors/new_donor.html', context)
+    return render(request, 'donors/index.html', context)
 
 def creation_view(model, form_cls):
     
