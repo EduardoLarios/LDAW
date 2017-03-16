@@ -54,8 +54,8 @@ def create_donation(model, form_cls):
     name = model._meta.model_name
     
     def view(request):
-        
-        context = {}
+    
+        context = {'today': datetime.datetime.now()}
         
         if request.method == "POST":
             
@@ -81,7 +81,7 @@ def create_donation(model, form_cls):
     return view
 
 
-new_donation = create_donation(Donor, DonorForm)
+new_donation = create_donation(Donation, DonationForm)
 
 # def new_donor(request):
 #
