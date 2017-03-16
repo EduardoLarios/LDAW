@@ -1,14 +1,15 @@
-import datetime
-# from .models.donors import State
-from .Forms.donors import DonorForm
+from .Forms.categories import CategoriesForm
 from .Forms.donations import DonationForm
+from .models.categories import Category
+from .models.donations import Donation
 from django.shortcuts import render
+from .Forms.donors import DonorForm
+# from .models.donors import State
 from django.template import loader
 from .models.donors import Donor
-from .models.donations import Donation
-from .Forms.categories import CategoriesForm
-from .models.categories import Category
+import datetime
 import logging
+
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
