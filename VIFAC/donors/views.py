@@ -15,9 +15,9 @@ logger = logging.getLogger(__name__)
 
 def index(request):
     context = {}
-    return render(request, 'donors/new_donor.html', context)
+    return render(request, 'donors/index.html', context)
 
-def creation_view(model, form_cls):
+def create_donor(model, form_cls):
     
     name = model._meta.model_name
     
@@ -47,7 +47,41 @@ def creation_view(model, form_cls):
 
     return view
 
-new_donor = creation_view(Donor, DonorForm)
+new_donor = create_donor(Donor, DonorForm)
+
+
+def create_donation(model, form_cls):
+    name = model._meta.model_name
+    
+    def view(request):
+        
+        context = {}
+        
+        if request.method == "POST":
+            
+            # Get the form through POST
+            form = form_cls(request.POST)
+            
+            # Validate form data
+            if form.is_valid():
+                # Get form variables
+                # Create donor object
+                context['donation'] = model.objects.create(**form.cleaned_data)
+                return render(request, 'donors/%s_created.html' % name, context, status = 201)
+            
+            context['form'] = form
+            return render(request, 'donors/new_%s.html' % name, context)
+        
+        else:
+            form = DonationForm()
+        
+        context['form'] = form
+        return render(request, 'donors/new_%s.html' % name, context)
+    
+    return view
+
+
+new_donation = create_donation(Donor, DonorForm)
 
 # def new_donor(request):
 #

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from django import forms
-from ..models.donors import Donor
 from ..models.categories import Category
+from ..models.donors import Donor
+from django import forms
 
 
 class DonationForm(forms.Form):
@@ -18,6 +18,6 @@ class DonationForm(forms.Form):
 	)
 	
 	donor = forms.ChoiceField(
-		choices=Donor,
+		choices = Donor,
 		label = 'Donador'
 	)
