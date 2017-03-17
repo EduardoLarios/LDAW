@@ -7,5 +7,6 @@ urlpatterns = [
 
     url(r'^$', views.index, name='index'),
     url(r'^donadores/$', views.new_donor, name='new_donor'),
-    url(r'^donaciones/$', views.new_donation, name='new_donation')
+    url(r'^donaciones/$', views.new_donation, name='new_donation'),
+    #url(r'^categorias/$', views.new_category, name = new_category)
 ]

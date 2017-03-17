@@ -50,9 +50,15 @@
 				<div class="container">
 					{% if form.non_field_errors or form.errors %}
 					<div class="row">
-						{% for name, e in form.non_field_errors.items %}<div class="alert">{{ e }}</div>
-						{% endfor %}{% for name, e in form.errors.items %}<div class="alert">{{ name }}: {{ e }}</div>
+
+						{% for name, e in form.non_field_errors.items %}
+							<div class="alert">{{ e }}</div>
 						{% endfor %}
+
+						{% for name, e in form.errors.items %}
+							<div class="alert">{{ name }}: {{ e }}</div>
+						{% endfor %}
+
 					</div>
 					{% endif %}
 					<form method="POST">

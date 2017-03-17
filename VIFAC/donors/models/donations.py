@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from .categories import Category
-from .donors import Donor
 from django.db import models
+from .donors import Donor
 
-#TODO Check model here
+
 class Donation(models.Model):
     donor = models.ForeignKey(
         Donor,
@@ -15,7 +15,7 @@ class Donation(models.Model):
         help_text = 'a small description of the donation'
     )
     
-    category = models.OneToOneField(Category,
+    category = models.ForeignKey(Category,
         verbose_name = 'Category',
         help_text = 'How one would classify the donation: money, food, etc.'
     )
@@ -26,7 +26,7 @@ class Donation(models.Model):
     
     
     def __str__(self) -> str:
-        return self.code + ' - ' + self.description
+        return '%s-%s' % (self.donor, self.category)
     
     class Meta(object):
         verbose_name = 'donation'

@@ -20,4 +20,11 @@ class Category(models.Model):
         default = '',
         verbose_name = "Description",
         help_text = "A small description of the category and its contents"
-)
+    )
+    
+    def __str__(self) -> str:
+        return '%s-%s' % (self.name, self.description)
+    
+    class Meta(object):
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
