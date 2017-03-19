@@ -993,7 +993,7 @@ if (typeof jQuery === 'undefined') {
       var transition = $.support.transition && that.$element.hasClass('fade')
 
       if (!that.$element.parent().length) {
-        that.$element.appendTo(that.$body) // don't move modals dom position
+        that.$element.appendTo(that.$body) // don't move models dom position
       }
 
       that.$element
@@ -1150,7 +1150,7 @@ if (typeof jQuery === 'undefined') {
     }
   }
 
-  // these following methods are used to handle overflowing modals
+  // these following methods are used to handle overflowing models
 
   Modal.prototype.handleUpdate = function () {
     this.adjustDialog()

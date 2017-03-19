@@ -5,6 +5,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 __all__ = [ 'Contact' ]
 
+
 class Contact(models.Model):
     full_name = models.CharField(
         max_length=256,
@@ -18,17 +19,15 @@ class Contact(models.Model):
     phone = PhoneNumberField(
         blank=False,
         null=False,
+        default=''
     )
-    email = models.EmailField()
-    birthday = models.DateField(
-        blank=True,
+    email = models.EmailField(
         null=False,
-        verbose_name=('Birthday'),
-        help_text=('Birthday of donor'),
+        default=''
     )
     aniversary = models.DateField(
-        blank=True,
-        null=False,
-        verbose_name=('Aniversary'),
-        help_text=('Aniversary of the donor'),
+        null=True,
+        default=date.today()
+        
     )
+    birthdate = models.DateTimeField(blank=True, null=True)
