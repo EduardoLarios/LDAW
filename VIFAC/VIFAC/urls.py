@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^donadores/', include('donors.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^usuarios/', include('users.urls'))
 ]
