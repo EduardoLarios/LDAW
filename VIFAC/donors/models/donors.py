@@ -17,7 +17,7 @@ State = (
     (8, 'Coahuila de Zaragoza'),
     (9, 'Colima'),
     (10, 'Durango'),
-    (11, 'Guanajuato'),
+    (11,'Guanajuato'),
     (12, 'Guerrero'),
     (13, 'Hidalgo'),
     (14, 'Jalisco'),
