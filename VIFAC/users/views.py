@@ -1,34 +1,33 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.views.generic import View
-from .forms import UserForm
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import (
+    CreateView,
+    UpdateView,
+    DeleteView
+)
+from .models import User
 
 
-class UserFormView(View):
-    form_class = UserForm
-    template_name = 'users/registrationform.html'
-    
-    # display blank form
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form': form})
-    # process form data
-    def post(self, request):
-        form = self.form_class(request.POST)
-        
-        if form.is_valid():
-            user = form.save(commit=False)
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user.set_password(password)
-            user.save()
-            
-            #return User if credentials correct
-            user = authenticate(username=username, password=password)
-            
-            if user is not None:
-                
-                if user.is_active:
-                    login(request, user)
-                    return redirect('/')
-        return render(request, self.template_name, {'form': form})
+class UserList(ListView):
+    model = User
+    template_name = "users/usuIndex.html"
+
+class UserDetail(DetailView):
+    model = User
+
+class UserCreation(CreateView):
+    model = User
+    success_url = reverse_lazy('users:list')
+    fields = ['name', 'password', 'username', 'aPaterno', 'aMaterno', 'fNacimiento', 'calle', 'colonia', 'cP']
+
+
+class UserUpdate(UpdateView):
+    model = User
+    success_url = reverse_lazy('users:list')
+    fields = ['name', 'password', 'username', 'aPaterno', 'aMaterno', 'fNacimiento', 'calle', 'colonia', 'cP']
+
+
+class UserDelete(DeleteView):
+    model = User
+    success_url = reverse_lazy('users:list')
