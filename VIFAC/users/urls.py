@@ -1,16 +1,14 @@
 from django.conf.urls import url
-from .views import (
-    UserList,
-    UserDetail,
-    UserCreation,
-    UserUpdate,
-    UserDelete
-)
+
+from . import views
+from .views import UserDelete
+
+app_name = 'users'
 
 urlpatterns = [
-    url(r'^$', UserList.as_view(), name='list'),
-    url(r'^(?P<pk>\d+)$', UserDetail.as_view(), name='detail'),
-    url(r'^nuevo$', UserCreation.as_view(), name='new'),
-    url(r'^editar/(?P<pk>\d+)$', UserUpdate.as_view(), name='edit'),
+    url(r'^$', views.index, name='index'),
+    url(r'^registrar/$', views.UserFormView.as_view(), name='register'),
     url(r'^borrar/(?P<pk>\d+)$', UserDelete.as_view(), name='delete'),
+    url(r'^lista_usuarios/$', views.list_users, name='lista_usuarios'),
+    url(r'^editar_usuario/(?P<pk>\d+)/$', views.UserUpdate.as_view(), name="user-update")
 ]
