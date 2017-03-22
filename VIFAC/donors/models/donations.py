@@ -5,19 +5,23 @@ from .donors import Donor
 
 
 class Donation(models.Model):
-    donor = models.ForeignKey(
-        Donor,
+    
+    donor = models.ForeignKey(Donor,
+        related_name = 'donations',
+        related_query_name = 'donation'
     )
     
     description = models.CharField(
         max_length = 1024,
         default = '',
-        help_text = 'a small description of the donation'
+        help_text = 'a small description of the donation',
     )
     
     category = models.ForeignKey(Category,
         verbose_name = 'Category',
-        help_text = 'How one would classify the donation: money, food, etc.'
+        help_text = 'How one would classify the donation: money, food, etc.',
+        related_name = 'donations',
+        related_query_name = 'donation'
     )
 
     date = models.DateField(

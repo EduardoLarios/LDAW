@@ -1,3 +1,5 @@
+from django.db.models import F
+
 from .forms.categories import CategoriesForm
 from .forms.donations import DonationForm
 from .forms.donors import DonorForm
@@ -43,24 +45,6 @@ def new_donor(request):
      
      return render(request, 'donors/new_donor.html', context)
 
-
-def list_donor(request):
-    queryset = Donor.objects.all().values()
-
-    return render(request, 'donors/donor_created.html', {'donors': queryset})
-
-def list_category(request):
-    queryset = Category.objects.all().values()
-
-    return render(request, 'donors/category_created.html', {'categories': queryset})
-
-def list_donation(request):
-    donation = Donation.objects.all().values()
-    context = {'donations': donation}
-
-    return render(request, 'donors/donation_created.html', context)
-
-
 def new_donation(request):
     
     donors = Donor.objects.all().values('id', 'full_name')
@@ -77,6 +61,7 @@ def new_donation(request):
             # Get form variables
             # Create donation object
             context['donation'] = Donation.objects.create(**new_donation_form.cleaned_data)
+            context['donations'] = Donation.objects.all().values()
             return render(request, 'donors/donation_created.html', context, status = 201)
         
         context['form'] = new_donation_form
@@ -115,3 +100,25 @@ def new_category(request):
     context['form'] = new_category_form
     
     return render(request, 'donors/new_category.html', context)
+
+#List CRUDs
+
+def list_donor(request):
+    queryset = Donor.objects.all().values()
+
+    return render(request, 'donors/donor_created.html', {'donors': queryset})
+
+def list_category(request):
+    queryset = Category.objects.all().values()
+
+    return render(request, 'donors/category_created.html', {'categories': queryset})
+
+def list_donation(request):
+    
+    donations = Donation.objects.all()
+    context = {'donations': donations}
+    
+    return render(request, 'donors/donation_created.html', context)
+
+
+
