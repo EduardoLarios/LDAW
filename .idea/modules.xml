@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/LDAW.iml" filepath="$PROJECT_DIR$/.idea/LDAW.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../VIFAC-LDAW/.idea/VIFAC-LDAW.iml" filepath="$PROJECT_DIR$/../VIFAC-LDAW/.idea/VIFAC-LDAW.iml" />
     </modules>
   </component>
 </project>
