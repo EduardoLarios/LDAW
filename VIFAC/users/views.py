@@ -55,7 +55,7 @@ def list_users(request):
 class UserUpdate(UpdateView):
     model = User
     fields = ['username', 'email', 'first_name', 'last_name']
-    template_name = 'users/editform.html'
+    template_name = 'users/escuelaedit.html'
     slug_field = 'username'
     slug_url_kwarg = 'slug'
     success_url = '/usuarios/lista_usuarios'
